@@ -20,7 +20,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     required this.createTaskUseCase,
   }) : super(TasksLoadInProgress()) {
     tasksSubscription = stream.listen((state) {
-      if (state is AddEditTaskSuccess) {
+      if (state is AddEditTaskSuccess || state is TaskAddedFailure || state is TaskUpdatedFailure) {
         add(TasksLoaded());
       }
     });
